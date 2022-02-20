@@ -1,0 +1,43 @@
+<?php
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * @file
+ * The texbar module file that allows adding a LaTeX toolbar to a module file.
+ */
+
+/**
+ * Implements hook_page_attachments().
+ */
+function texbar_page_attachments(array &$page) {
+  $config = Drupal::config('texbar.settings');
+  $page['#attached']['library'][] = 'texbar/markitup';
+  $page['#attached']['library'][] = 'texbar/texbar';
+  $page['#attached']['drupalSettings']['texbar']['selector'] = $config->get('selector');
+}
+
+/**
+ * @file
+ * Contains texbar.module.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function texbar_help($route_name, RouteMatchInterface $arg) {
+  switch ($route_name) {
+    case 'help.page.texbar':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module adds a basic LaTeX Toolbar to all textareas with the chosen jQuery selector.') . '</p>';
+
+      // Add a link to the Drupal.org project.
+      $output .= '<p>';
+      $output .= t('Visit the <a href=":project_link">LaTeX Toolbar project pages</a> on Drupal.org for more information.',[
+        ':project_link' => 'https://www.drupal.org/project/texbar'
+      ]);
+      $output .= '</p>';
+
+      return $output;
+  }
+}

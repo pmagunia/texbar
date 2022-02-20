@@ -1,0 +1,4 @@
+administer texbar:
+  title: 'Administer the LaTeX Toolbar'
+  restrict access: TRUE
+

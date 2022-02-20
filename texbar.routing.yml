@@ -1,0 +1,8 @@
+texbar.settings:
+  path: '/admin/config/content/texbar'
+  defaults:
+    _title: 'LaTeX Toolbar'
+    _form: '\Drupal\texbar\Form\TexbarSettingsForm'
+  requirements:
+    _permission: 'administer texbar'
+

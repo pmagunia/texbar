@@ -1,0 +1,6 @@
+texbar.settings:
+  title: LaTeX Toolbar
+  description: 'Configure global settings for the LaTeX Toolbar.'
+  parent: system.admin_config_content
+  route_name: texbar.settings
+

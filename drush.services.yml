@@ -1,0 +1,10 @@
+services:
+  texbar.commands:
+    class: Drupal\texbar\Commands\TexbarCommands
+    arguments:
+      - '@library.discovery'
+      - '@http_client'
+      - '@state'
+      - '@datetime.time'
+    tags:
+      - { name: drush.command }

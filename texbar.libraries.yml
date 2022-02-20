@@ -1,0 +1,13 @@
+texbar:
+  version: 1.x
+  css:
+    theme:
+      texbar.css: {}
+      sets/latex/latex-buttons.css: {}
+  js:
+    /libraries/markitup/jquery.markitup.js: {}
+    texbar.js: {}
+    sets/latex/set.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

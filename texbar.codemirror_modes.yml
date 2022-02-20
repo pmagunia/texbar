@@ -1,0 +1,4 @@
+stex:
+  label: TeX
+  mime_types:
+    - text/x-stex

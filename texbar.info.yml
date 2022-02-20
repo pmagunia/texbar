@@ -1,0 +1,6 @@
+name: LaTeX Toolbar
+description: Creates a toolbar to add LaTeX code to textareas
+core: 8.x
+type: module
+configure: texbar.settings
+core_version_requirement: ^8 || ^9

@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Texbar module.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function texbar_requirements($phase) {
+  $requirements = [];
+
+  if ($phase != 'runtime') {
+    return $requirements;
+  }
+  $requirements['markitup'] = [
+    'title' => t('Markitup library'),
+  ];
+
+  $installed = FALSE;
+  if (file_exists(DRUPAL_ROOT . '/libraries/markitup/jquery.markitup.js')) {
+    $installed = TRUE;
+  }
+
+  if ($installed) {
+    $requirements['markitup']['value'] = t('Installed');
+    $requirements['markitup']['severity'] = REQUIREMENT_INFO;
+  }
+  else {
+    $requirements['markitup']['value'] = t('Not found');
+    $requirements['markitup']['severity'] = REQUIREMENT_ERROR;
+    $requirements['markitup']['description'] = t(
+      'You need to download the <a href=":library_url">Markitup library file</a> called <code>jquery.markitup.js</code> to the <em>libraries/markitup</em> directory on your server. Optionally, you may use the Drush download command documented in the LaTeX Toolbar README.txt to satisfy this requirement.',
+      [':library_url' => 'http://markitup.jaysalvat.com/home']
+    );
+  }
+  return $requirements;
+}
+
+/**
+ * Implements hook_install().
+ */
+function texbar_install() {
+  $messenger = \Drupal::messenger();
+  $messenger->addMessage("The LaTeX Toolbar module has been successfully enabled. Please ensure the Markitup JavaScript file has been dowloaded to the libraries folder. Additional information is available in this Drupal installation's Status Report.");
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function texbar_uninstall() {
+  $messenger = \Drupal::messenger();
+  $messenger->addMessage("The LaTeX Toolbar module has been successfully uninstalled. The Markitup library dependency may now be deleted.");
+}
